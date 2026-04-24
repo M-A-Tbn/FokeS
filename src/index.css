@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-900: var(--brand-900);
+  --color-sub1: var(--sub1);
+  --color-sub2: var(--sub2);
+  --color-sub3: var(--sub3);
+  --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--brand-50);
+  background-image: 
+    radial-gradient(circle at 80% 20%, var(--brand-100) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, var(--brand-100) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, var(--brand-50) 0%, transparent 100%);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  color: var(--brand-900);
+}
+
+.dark body {
+  background-color: var(--brand-900);
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 60%);
+  background-size: 100% 100%;
+  color: var(--brand-50);
+}
+
+[data-theme="pumpy"] body, [data-theme="pumpy"].dark body {
+  background-image: none !important;
+}
+
+/* Global transparent pass-throughs so the noise shows */
+.bg-brand-50, .dark\:bg-slate-950 {
+  background-color: transparent !important;
+}
+
+/* Typography structural overrides */
+h1, h2, h3 {
+  letter-spacing: -0.04em !important;
+}
+
+header h1 {
+  font-weight: 900 !important;
+  text-transform: uppercase;
+}
+
+/* Monospace numerals and stats */
+.text-8xl, .countdown {
+  font-family: var(--font-mono);
+  letter-spacing: -0.05em;
+}
+
+/* High-End Glassmorphism for main sections */
+.bg-white\/70,
+.dark\:bg-slate-900\/70,
+.bg-white,
+.dark\:bg-slate-900 {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.2) !important;
+  border-radius: 32px; /* Smoother corners */
+}
+
+.dark .bg-white\/70,
+.dark .dark\:bg-slate-900\/70,
+.dark .bg-white,
+.dark .dark\:bg-slate-900 {
+  background: rgba(15, 15, 18, 0.3) !important;
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+  border-radius: 32px;
+}
+
+[data-theme="pumpy"] .bg-white\/70,
+[data-theme="pumpy"].dark .dark\:bg-slate-900\/70,
+[data-theme="pumpy"] .bg-white,
+[data-theme="pumpy"].dark .dark\:bg-slate-900,
+[data-theme="pumpy"].dark .bg-white\/70,
+[data-theme="pumpy"] .dark\:bg-slate-900\/70,
+[data-theme="pumpy"] section {
+  background: white !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 2px solid var(--brand-900) !important;
+  box-shadow: 4px 4px 0px var(--brand-900) !important;
+  border-radius: 12px !important;
+}
+
+[data-theme="pumpy"].dark section,
+[data-theme="pumpy"].dark .bg-white\/70,
+[data-theme="pumpy"].dark .bg-white {
+  background: var(--brand-900) !important;
+  border: 2px solid var(--brand-50) !important;
+  box-shadow: 4px 4px 0px var(--brand-50) !important;
+  color: var(--brand-50) !important;
+}
+
+/* Solid blocks override */
+nav {
+  box-shadow: 0 -4px 30px rgba(0,0,0,0.03) !important;
+  border-radius: 0;
+}
+.dark nav {
+  box-shadow: 0 -4px 30px rgba(0,0,0,0.3) !important;
+  border-radius: 0;
+}
+
+/* Interactive elements polish */
+button.bg-brand-600 {
+  box-shadow: 0 4px 16px -2px var(--brand-500) !important;
+  transform: translateY(0);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+button.bg-brand-600:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 var(--brand-500) !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-500);
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.heatmap-cell:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  z-index: 10;
+}
